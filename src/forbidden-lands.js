@@ -56,6 +56,12 @@ Hooks.once("init", () => {
 	initializeHandlebars();
 	registerSettings();
 	modifyConfig();
+	// Check preferences and conditionally enable darkmode
+	if (game.settings.get("forbidden-lands", "darkmode")) $("html").addClass("dark");
+});
+
+Hooks.on("renderPause", (_app, html) => {
+	html.find("img").attr("src", "systems/forbidden-lands/assets/fbl-sun.webp");
 });
 
 Hooks.once("ready", () => {
